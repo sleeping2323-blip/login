@@ -1,0 +1,187 @@
+
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f2f2f2;
+        }
+
+        .navbar {
+            background: #172b40;
+            color: white;
+            padding: 20px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .navbar a {
+            color: white;
+            text-decoration: none;
+            margin-left: 25px;
+        }
+
+        .navbar a:hover {
+            color: #8db4dc;
+        }
+
+        .register-container {
+            width: 450px;
+            max-width: 95%;
+            background: white;
+            padding: 30px;
+            margin: 40px auto;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 25px;
+        }
+
+        label {
+            display: block;
+            margin: 12px 0 7px;
+        }
+
+        input {
+            width: 100%;
+            padding: 11px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+        }
+
+        .buttons {
+            display: flex;
+            gap: 10px;
+            margin-top: 25px;
+        }
+
+        button {
+            width: 50%;
+            padding: 12px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+
+        .register-btn {
+            background: #172b40;
+            color: white;
+        }
+
+        .cancel-btn {
+            background: #ddd;
+            color: #333;
+        }
+
+        .login-link {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .login-link a {
+            color: #172b40;
+        }
+    </style>
+</head>
+
+<body>
+
+<nav class="navbar">
+    <div>IT Helpdesk</div>
+    <div>
+        <a href="index.html">หน้าแรก</a>
+        <a href="profile1.html">Profile 1</a>
+        <a href="profile2.html">Profile 2</a>
+        <a href="profile3.html">Profile 3</a>
+        <a href="login.html">Login</a>
+        <a href="register.html">Register</a>
+    </div>
+</nav>
+
+<div class="register-container">
+
+    <h2>Register</h2>
+
+    <form onsubmit="registerUser(event)">
+
+        <label>ชื่อ</label>
+        <input type="text" id="firstname"
+               placeholder="กรอกชื่อ" required>
+
+        <label>นามสกุล</label>
+        <input type="text" id="lastname"
+               placeholder="กรอกนามสกุล" required>
+
+        <label>เบอร์โทรศัพท์</label>
+        <input type="tel" id="phone"
+               placeholder="กรอกเบอร์โทรศัพท์" required>
+
+        <label>อีเมล</label>
+        <input type="email" id="email"
+               placeholder="กรอกอีเมล" required>
+
+        <label>ชื่อผู้ใช้</label>
+        <input type="text" id="username"
+               placeholder="ตั้งชื่อผู้ใช้" required>
+
+        <label>รหัสผ่าน</label>
+        <input type="password" id="password"
+               placeholder="ตั้งรหัสผ่าน" required minlength="6">
+
+        <div class="buttons">
+            <button type="submit" class="register-btn">
+                Register
+            </button>
+
+            <button type="button" class="cancel-btn"
+                    onclick="window.location.href='index.html'">
+                Cancel
+            </button>
+        </div>
+
+    </form>
+
+    <div class="login-link">
+        มีบัญชีอยู่แล้ว?
+        <a href="login.html">Login</a>
+    </div>
+
+</div>
+
+<script>
+    function registerUser(event) {
+        event.preventDefault();
+
+        const user = {
+            firstname: document.getElementById("firstname").value,
+            lastname: document.getElementById("lastname").value,
+            phone: document.getElementById("phone").value,
+            email: document.getElementById("email").value,
+            username: document.getElementById("username").value,
+            password: document.getElementById("password").value
+        };
+
+        localStorage.setItem("userData", JSON.stringify(user));
+
+        alert("สมัครสมาชิกสำเร็จ");
+
+        window.location.href = "login.html";
+    }
+</script>
+
+</body>
+</html>

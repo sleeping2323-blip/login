@@ -1,0 +1,176 @@
+
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f2f2f2;
+        }
+
+        .navbar {
+            background: #172b40;
+            color: white;
+            padding: 20px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .navbar a {
+            color: white;
+            text-decoration: none;
+            margin-left: 25px;
+        }
+
+        .navbar a:hover {
+            color: #8db4dc;
+        }
+
+        .login-container {
+            width: 380px;
+            max-width: 90%;
+            background: white;
+            padding: 35px;
+            margin: 80px auto;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 25px;
+        }
+
+        label {
+            display: block;
+            margin: 15px 0 8px;
+        }
+
+        input {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+        }
+
+        .buttons {
+            display: flex;
+            gap: 10px;
+            margin-top: 25px;
+        }
+
+        button {
+            width: 50%;
+            padding: 12px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+
+        .login-btn {
+            background: #172b40;
+            color: white;
+        }
+
+        .cancel-btn {
+            background: #ddd;
+            color: #333;
+        }
+
+        .register-link {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .register-link a {
+            color: #172b40;
+        }
+    </style>
+</head>
+
+<body>
+
+<nav class="navbar">
+    <div>IT Helpdesk</div>
+    <div>
+        <a href="index.html">หน้าแรก</a>
+        <a href="profile1.html">Profile 1</a>
+        <a href="profile2.html">Profile 2</a>
+        <a href="profile3.html">Profile 3</a>
+        <a href="login.html">Login</a>
+        <a href="register.html">Register</a>
+    </div>
+</nav>
+
+<div class="login-container">
+
+    <h2>Login</h2>
+
+    <form onsubmit="loginUser(event)">
+
+        <label>ชื่อผู้ใช้</label>
+        <input type="text" id="username"
+               placeholder="กรอกชื่อผู้ใช้" required>
+
+        <label>รหัสผ่าน</label>
+        <input type="password" id="password"
+               placeholder="กรอกรหัสผ่าน" required>
+
+        <div class="buttons">
+            <button type="submit" class="login-btn">Login</button>
+            <button type="button" class="cancel-btn"
+                    onclick="window.location.href='index.html'">
+                Cancel
+            </button>
+        </div>
+
+    </form>
+
+    <div class="register-link">
+        ยังไม่มีบัญชี?
+        <a href="register.html">Register</a>
+    </div>
+
+</div>
+
+<script>
+    function loginUser(event) {
+        event.preventDefault();
+
+        const username = document.getElementById("username").value;
+        const password = document.getElementById("password").value;
+
+        const user = JSON.parse(localStorage.getItem("userData"));
+
+        if (!user) {
+            alert("ยังไม่มีบัญชี กรุณาสมัครสมาชิกก่อน");
+            return;
+        }
+
+       if (username === user.username && password === user.password) {
+    sessionStorage.setItem("loggedIn", "true");
+    alert("เข้าสู่ระบบสำเร็จ");
+    window.location.href = "index.html";
+}
+    }
+</script>
+<script>
+    function logoutUser() {
+        if (confirm("คุณต้องการออกจากระบบหรือไม่?")) {
+            sessionStorage.removeItem("loggedIn");
+            window.location.href = "login.html";
+        }
+    }
+</script>
+</body>
+</html>
